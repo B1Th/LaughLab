@@ -1,14 +1,19 @@
+"use client";
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState } from "react";
 import "./globals.css";
 
-export const metadata = {
-  title: "LaughLab",
-  description: "Get ready to laugh with our joke generator!",
-};
-
 export default function RootLayout({ children }) {
+  const [queryClient] = useState(() => new QueryClient());
+
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
+      </body>
     </html>
   );
 }
